@@ -1,7 +1,11 @@
 package com.example.demo.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 	@Document(collection = "leave_requests")
@@ -10,12 +14,15 @@ import java.util.List;
 	    @Id
 	    private String id;
 	 
-	    private String leaveType;//--
-	    
-	    private LocalDate startDate;//--
-	    private LocalDate endDate;//--
-	    private String reason; 
+	    private String leaveType;
 	    private String availedBy;
+	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+	    private LocalDate startDate;
+
+	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+	    private LocalDate endDate;
+
+	    private String reason; 
 	 
 	    private List<String> backupContacts;
 	    private List<String> notifyToRecipients;
@@ -23,12 +30,11 @@ import java.util.List;
 	    private String baseLocation;
 	    private String projectSow;
 	    private String subTeam;
-	    private String leaveStatus; 
-	    private String leadId;//--
-	    private String UserId;//--
-	 
+	    private String leaveStatus;     
 	    private String comments; 
-	 
+	    private LocalDateTime createdAt;
+	    private LocalDateTime updatedAt;
+    
 	   
 	 
 	    public String getId() {
@@ -114,18 +120,6 @@ import java.util.List;
 	    public void setLeaveStatus(String leaveStatus) {
 	        this.leaveStatus = leaveStatus;
 	    }
-	    public String getleadId() {
-	    	return leadId;
-	    }
-	    public void setleadId(String leadId) {
-	    	this.leadId = leadId;
-	    }
-	    public String getUserId() {
-	    	return UserId;
-	    }
-	    public void setUserId(String UserId) {
-	    	this.UserId = UserId;
-	    }
 	 
 	    public String getComments() {
 	        return comments;
@@ -133,5 +127,18 @@ import java.util.List;
 	    public void setComments(String comments) {
 	        this.comments = comments;
 	    }
+		public LocalDateTime getCreatedAt() {
+			return createdAt;
+		}
+		public void setCreatedAt(LocalDateTime createdAt) {
+			this.createdAt = createdAt;
+		}
+		public LocalDateTime getUpdatedAt() {
+			return updatedAt;
+		}
+		public void setUpdatedAt(LocalDateTime updatedAt) {
+			this.updatedAt = updatedAt;
+		}
+		
 	}
 
