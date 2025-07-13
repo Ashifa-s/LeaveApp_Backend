@@ -3,7 +3,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 	@Document(collection = "leave_requests")
 	public class LeaveRequest {
 	 
@@ -11,22 +17,24 @@ import java.util.List;
 	    private String id;
 	 
 	    private String leaveType;//--
-	    
+	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
 	    private LocalDate startDate;//--
+	    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
 	    private LocalDate endDate;//--
 	    private String reason; 
 	    private String availedBy;
 	 
-	    private List<String> backupContacts;
-	    private List<String> notifyToRecipients;
+	    private List<String> backupContact;
+	    private List<String> notifyTo;
 	 
 	    private String baseLocation;
 	    private String projectSow;
-	    private String subTeam;
+	    private String subLobTeam;
 	    private String leaveStatus; 
 	    private String leadId;//--
 	    private String UserId;//--
-	 
+	    private LocalDateTime createdAt;
+	    private LocalDateTime updatedAt;
 	    private String comments; 
 	 
 	   
@@ -74,17 +82,17 @@ import java.util.List;
 	    }
 	 
 	    public List<String> getBackupContacts() {
-	        return backupContacts;
+	        return backupContact;
 	    }
 	    public void setBackupContacts(List<String> backupContacts) {
-	        this.backupContacts = backupContacts;
+	        this.backupContact = backupContacts;
 	    }
 	 
 	    public List<String> getNotifyToRecipients() {
-	        return notifyToRecipients;
+	        return notifyTo;
 	    }
 	    public void setNotifyToRecipients(List<String> notifyToRecipients) {
-	        this.notifyToRecipients = notifyToRecipients;
+	        this.notifyTo = notifyToRecipients;
 	    }
 	 
 	    public String getBaseLocation() {
@@ -102,10 +110,10 @@ import java.util.List;
 	    }
 	 
 	    public String getSubTeam() {
-	        return subTeam;
+	        return subLobTeam;
 	    }
 	    public void setSubTeam(String subTeam) {
-	        this.subTeam = subTeam;
+	        this.subLobTeam = subTeam;
 	    }
 	 
 	    public String getLeaveStatus() {
@@ -133,5 +141,17 @@ import java.util.List;
 	    public void setComments(String comments) {
 	        this.comments = comments;
 	    }
+	    public LocalDateTime getCreatedAt() {
+			return createdAt;
+		}
+		public void setCreatedAt(LocalDateTime createdAt) {
+			this.createdAt = createdAt;
+		}
+		public LocalDateTime getUpdatedAt() {
+			return updatedAt;
+		}
+		public void setUpdatedAt(LocalDateTime updatedAt) {
+			this.updatedAt = updatedAt;
+		}
 	}
 
