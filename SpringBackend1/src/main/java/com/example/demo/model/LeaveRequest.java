@@ -36,6 +36,7 @@ import java.util.List;
 	    private LocalDateTime createdAt;
 	    private LocalDateTime updatedAt;
 	    private String comments; 
+	    private String approvalstatus;
 	 
 	   
 	 
@@ -152,6 +153,12 @@ import java.util.List;
 		}
 		public void setUpdatedAt(LocalDateTime updatedAt) {
 			this.updatedAt = updatedAt;
+		}
+		public String getApprovalstatus() {
+			return approvalstatus;
+		}
+		public void setApprovalstatus(String approvalstatus) {
+			this.approvalstatus = approvalstatus;
 		}
 	}
 

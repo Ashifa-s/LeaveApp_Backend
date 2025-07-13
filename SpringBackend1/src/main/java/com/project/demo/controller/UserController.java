@@ -21,15 +21,15 @@ public class UserController {
 	@Autowired
 	private LeaveService leaveService;
 
-    @PostMapping("/submit")
-    public ResponseEntity<?> submitLeave(@Valid @RequestBody leaverequestdto dto) {
-        try {
-            LeaveRequest saved = leaveService.submitLeaveRequest(dto);
-            return ResponseEntity.ok("Leave submitted successfully. ID: " + saved.getId());
-        } catch (RuntimeException ex) {
-            return ResponseEntity.badRequest().body("Error: " + ex.getMessage());
-        }
-    }
+//    @PostMapping("/submit")
+//    public ResponseEntity<?> submitLeave(@Valid @RequestBody leaverequestdto dto) {
+//        try {
+////            LeaveRequest saved = leaveService.submitLeaveRequest(dto);
+//            return ResponseEntity.ok("Leave submitted successfully. ID: " + saved.getId());
+//        } catch (RuntimeException ex) {
+//            return ResponseEntity.badRequest().body("Error: " + ex.getMessage());
+//        }
+//    }
 
 	@PostMapping("/insertuser")
 	public ResponseEntity<?> addUser(@RequestBody Usermodel user) {

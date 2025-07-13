@@ -3,6 +3,8 @@ package com.example.demo.dto;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -18,25 +20,31 @@ public class leaverequestdto {
     private String leaveType;
 
     @NotNull
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private LocalDate startDate;
 
     @NotNull
+    //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private LocalDate endDate;
+    private String availedBy;
+    private String baseLocation;
+    private String projectSow;
+    private String leaveStatus; 
+    private String comments;
     
     private int userLevel;
     private int leadLevel;
     
     private String reason; 
-    private String availedBy;
+   
  
-    private List<String> backupContacts;
-    private List<String> notifyToRecipients;
+    private List<String> backupContact;
+    private List<String> notifyTo;
  
-    private String baseLocation;
-    private String projectSow;
-    private String subTeam;
-    private String leaveStatus; 
-    private String comments;
+    
+   
+    private String subLobTeam;
+   
 
    
     public String getUserId() {
@@ -110,20 +118,18 @@ public class leaverequestdto {
 		this.availedBy = availedBy;
 	}
 
-	public List<String> getBackupContacts() {
-		return backupContacts;
+	public List<String> getBackupContact() {
+	    return backupContact;
+	}
+	public void setBackupContact(List<String> backupContact) {
+	    this.backupContact = backupContact;
 	}
 
-	public void setBackupContacts(List<String> backupContacts) {
-		this.backupContacts = backupContacts;
+	public List<String> getNotifyTo() {
+	    return notifyTo;
 	}
-
-	public List<String> getNotifyToRecipients() {
-		return notifyToRecipients;
-	}
-
-	public void setNotifyToRecipients(List<String> notifyToRecipients) {
-		this.notifyToRecipients = notifyToRecipients;
+	public void setNotifyTo(List<String> notifyTo) {
+	    this.notifyTo = notifyTo;
 	}
 
 	public String getBaseLocation() {
@@ -142,12 +148,12 @@ public class leaverequestdto {
 		this.projectSow = projectSow;
 	}
 
-	public String getSubTeam() {
-		return subTeam;
+	public String getSubLobTeam() {
+		return subLobTeam;
 	}
 
-	public void setSubTeam(String subTeam) {
-		this.subTeam = subTeam;
+	public void setSubLobTeam(String subTeam) {
+		this.subLobTeam = subTeam;
 	}
 
 	public String getLeaveStatus() {
@@ -164,6 +170,8 @@ public class leaverequestdto {
 
 	public void setComments(String comments) {
 		this.comments = comments;
+		
 	}
+
 }
 
