@@ -1,5 +1,4 @@
-package com.project.demo.Configuration; // Change to your package
-
+package com.example.demo.Configuration; 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -9,8 +8,8 @@ public class webconfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")  // Allow all paths
-                .allowedOrigins("http://localhost:4200")  // Allow Angular app
-                .allowedMethods("*");  // Allow all HTTP methods (GET, POST, etc.)
+        registry.addMapping("/**")  
+                .allowedOrigins("http://localhost:4200")  
+                .allowedMethods("*"); 
     }
 }
