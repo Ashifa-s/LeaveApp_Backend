@@ -2,6 +2,8 @@ package com.example.demo.dto;
 
 import java.util.List;
 
+import com.example.demo.model.Usermodel;
+
 public class AllDropdowns {
 
     private List<String> leaveTypes;
@@ -9,7 +11,7 @@ public class AllDropdowns {
     private List<String> subTeams;
     private List<String> projects;
     private List<String> leavestatus;
-
+    private List<Usermodel> User;
 
     public List<String> getLeaveTypes() {
         return leaveTypes;
@@ -50,4 +52,16 @@ public class AllDropdowns {
     public void setStatus(List<String> status) {
         this.leavestatus = status;
     }
+
+	public List<Usermodel> getUser() {
+		return User;
+	}
+
+	public void setUser(List<Usermodel> user) {
+		this.User = user;
+	}
+
+	
+		
+	
 }

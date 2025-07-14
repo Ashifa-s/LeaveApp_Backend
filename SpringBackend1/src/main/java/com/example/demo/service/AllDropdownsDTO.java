@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.service.LeaveService;
 import com.example.demo.dto.AllDropdowns;
 import com.example.demo.repository.*;
+import com.example.demo.model.Usermodel;
 
 @Service
 public class AllDropdownsDTO {
@@ -27,38 +27,44 @@ public class AllDropdownsDTO {
     @Autowired
     private LeaveStatusRepository LeavestatusRepository;
 
+    @Autowired
+    private UserRepository userRepository; 
+
     public AllDropdowns getAllDropdowns() {
         AllDropdowns dto = new AllDropdowns();
 
         dto.setLeaveTypes(
             leaveTypeRepository.findAll().stream()
-                .map(item -> item.getLeaveType()) 
+                .map(item -> item.getLeaveType())
                 .collect(Collectors.toList())
         );
 
         dto.setBaseLocations(
             locationRepository.findAll().stream()
-                .map(item -> item.getName()) 
+                .map(item -> item.getName())
                 .collect(Collectors.toList())
         );
 
         dto.setSubTeams(
             SUBLOBTEAMRepository.findAll().stream()
-                .map(item -> item.getName()) 
+                .map(item -> item.getName())
                 .collect(Collectors.toList())
         );
 
         dto.setProjects(
             ProjectRepository.findAll().stream()
-                .map(item -> item.getName()) 
+                .map(item -> item.getName())
                 .collect(Collectors.toList())
         );
 
         dto.setStatus(
             LeavestatusRepository.findAll().stream()
-                .map(item -> item.getName()) 
+                .map(item -> item.getName())
                 .collect(Collectors.toList())
         );
+
+        
+        dto.setUser(userRepository.findAll());
 
         return dto;
     }
