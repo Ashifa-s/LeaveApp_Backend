@@ -42,21 +42,27 @@ public class LeaveService {
 
 			Usermodel user = userRepository.findByUserId(dto.getUserId())
 			    .orElseThrow(() -> new RuntimeException("Requesting user not found"));
+//
+//		
+//				var leadLevel = lead.getLeadLevel();
+//				var userLevel = user.getLeadLevel();
+//				
+//				var leadUserLevel = lead.getUserLevel();
+//				var UserValueLevel = user.getLeadLevel();
+//		if (leadLevel > userLevel) 
+//		{
+//			throw new RuntimeException("Lead must have higher hierarchy level.");
+//		}
+//		if (leadUserLevel >UserValueLevel ) 
+//		{
+//			throw new RuntimeException("Lead must have higher hierarchy level.");
+//		}
 		
+		int userLeadLevel = user.getUserLevel();     // the hierarchy level user is at
+		int leadUserLevel = lead.getUserLevel();     // the hierarchy level lead belongs to
 
-		
-				var leadLevel = lead.getLeadLevel();
-				var userLevel = user.getLeadLevel();
-				
-				var leadUserLevel = lead.getUserLevel();
-				var UserValueLevel = user.getLeadLevel();
-		if (leadLevel > userLevel) 
-		{
-			throw new RuntimeException("Lead must have higher hierarchy level.");
-		}
-		if (leadUserLevel >UserValueLevel ) 
-		{
-			throw new RuntimeException("Lead must have higher hierarchy level.");
+		if (userLeadLevel <= leadUserLevel) {
+		    throw new RuntimeException("User's lead level must be greater than lead's user level.");
 		}
 		
         LeaveResponse response=new LeaveResponse();
@@ -82,7 +88,7 @@ public class LeaveService {
 		leave.setApprovalstatus("Pending");
 		
 	      List<String> errors = new ArrayList<>();
-	       // === REQUIRED FIELD VALIDATIONS ===
+	       
 	       if (isBlank(leave.getLeaveType())) errors.add("Leave Type is required.");
 	       if (isBlank(leave.getAvailedBy())) errors.add("Availed By is required.");
 	       if (isBlank(leave.getReason())) errors.add("Reason is required.");
@@ -93,7 +99,7 @@ public class LeaveService {
 	       if (isBlank(leave.getBaseLocation())) errors.add("Base Location is required.");
 	       if (isBlank(leave.getProjectSow())) errors.add("Project/SOW is required.");
 	       if (isBlank(leave.getSubTeam())) errors.add("Sub-LOB/Team is required.");
-	       // === DATE VALIDATION ===
+	      
 	       LocalDate start = leave.getStartDate();
 	       LocalDate end = leave.getEndDate();
 	       LocalDate today = LocalDate.now();
@@ -106,7 +112,7 @@ public class LeaveService {
 	               errors.add("Planned Leave must be applied at least " + PLANNED_LEAVE_ADVANCE_DAYS + " days in advance.");
 	           }
 	       }
-	       // === OVERLAPPING LEAVE CHECK ===
+	      
 	       if (leave.getAvailedBy() != null && start != null && end != null) {
 	           List<LeaveRequest> existing = leaveRequestRepository.findByAvailedBy(leave.getAvailedBy());
 	           for (LeaveRequest lr : existing) {
@@ -126,7 +132,7 @@ public class LeaveService {
 	          return response;
 	       }
 	       
-	       // === SET SYSTEM FIELDS ===
+	      
 	       leave.setLeaveStatus("Pending");
 	       leave.setCreatedAt(LocalDateTime.now());
 	       leave.setUpdatedAt(LocalDateTime.now());
