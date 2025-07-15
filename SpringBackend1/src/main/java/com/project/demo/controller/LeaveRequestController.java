@@ -22,7 +22,7 @@ public class LeaveRequestController {
        // === REQUIRED FIELD VALIDATIONS ===
        if (isBlank(request.getLeaveType())) errors.add("Leave Type is required.");
        if (isBlank(request.getAvailedBy())) errors.add("Availed By is required.");
-       if (isBlank(request.getReason())) errors.add("Reason is required.");
+      
        if (request.getBackupContacts() == null || request.getBackupContacts().isEmpty())
            errors.add("Backup Contact is required.");
        if (request.getNotifyToRecipients() == null || request.getNotifyToRecipients().isEmpty())

@@ -91,7 +91,6 @@ public class LeaveService {
 	       
 	       if (isBlank(leave.getLeaveType())) errors.add("Leave Type is required.");
 	       if (isBlank(leave.getAvailedBy())) errors.add("Availed By is required.");
-	       if (isBlank(leave.getReason())) errors.add("Reason is required.");
 	       if (leave.getBackupContacts() == null || leave.getBackupContacts().isEmpty())
 	           errors.add("Backup Contact is required.");
 	       if (leave.getNotifyToRecipients() == null || leave.getNotifyToRecipients().isEmpty())
