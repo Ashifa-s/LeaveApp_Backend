@@ -3,10 +3,12 @@ package com.example.demo.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.repository.UsersadminRepository;
+import com.example.demo.model.LeaveRequest;
 import com.example.demo.model.usersadmin;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class usersadminService {
@@ -42,6 +44,31 @@ public class usersadminService {
     public void deleteUser(String id) {
         usersadminRepository.deleteById(id);
     }
-		
+    
+    public List<usersadmin> getBystatus(String id) {
+        return usersadminRepository.findByStatus("Approved");
+        
+     }
+    
+   
+    public List<usersadmin> getBystatus() {
+        List<usersadmin> useradmin = usersadminRepository.findAll();
+
+        List<usersadmin> approvedUsers = useradmin.stream()
+            .filter(user ->
+                "approved".equalsIgnoreCase(user.getApprovalstatus()) &&
+                user.getStartDate() != null &&
+                user.getEndDate() != null
+            )
+            .collect(Collectors.toList());
+
+        return approvedUsers;
+    }
+
+	public List<usersadmin> getByStatus(String id) {
+		return null;
 	}
 
+     
+
+}

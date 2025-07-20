@@ -61,5 +61,10 @@ public class UsersadminController {
         service.deleteUser(id);
         
     }
-    
+   
+    @GetMapping("/approvedleaves")
+    public List<usersadmin> getApprovedLeaves(){
+    	return service.getBystatus();
+    }
+
 }

@@ -33,6 +33,7 @@ public class usersadmin {
     private String projectSow;
  
     private List<String> notifyToRecipients;
+    private String status;
  
     public usersadmin() {
     }
@@ -41,7 +42,7 @@ public class usersadmin {
                       int userLevel, int leadLevel, String userEmail, String leadEmail,
                       String leadComments, String approvalstatus, String startDate,
                       String endDate, String leaveType, String leaveStatus, 
-                      String projectSow, List<String> notifyToRecipients) {
+                      String projectSow, List<String> notifyToRecipients, String status) {
         this.id = id;
         this.availedBy = availedBy;
         this.subLobTeam = subLobTeam;
@@ -59,6 +60,7 @@ public class usersadmin {
         this.leaveStatus = leaveStatus;
         this.projectSow = projectSow;
         this.notifyToRecipients = notifyToRecipients;
+        this.status = status;
     }
  
  
@@ -112,4 +114,12 @@ public class usersadmin {
  
     public List<String> getNotifyToRecipients() { return notifyToRecipients; }
     public void setNotifyToRecipients(List<String> notifyToRecipients) { this.notifyToRecipients = notifyToRecipients; }
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 }

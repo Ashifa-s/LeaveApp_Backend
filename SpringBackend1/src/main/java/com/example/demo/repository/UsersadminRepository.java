@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -14,4 +15,5 @@ public interface UsersadminRepository extends MongoRepository<usersadmin, String
     Optional<usersadmin> findByUserId(String userId);
 
     Optional<usersadmin> findByUserLevelAndLeadLevel(int userLevel, int leadLevel);
+    List<usersadmin> findByStatus(String status);
 }
